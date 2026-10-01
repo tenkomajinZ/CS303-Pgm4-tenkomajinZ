@@ -1,0 +1,77 @@
+
+PROCESSING INTEGER FILE
+Invalid request:      addFirst
+Invalid request:      addLast
+Invalid request:      addFirst
+Invalid request:      addLast
+Invalid request:      add
+Invalid request:      add
+Invalid request:      add
+Invalid request:      add
+Invalid request:      addBefore
+Invalid request:      addBefore
+Invalid request:      print
+Invalid request:      removeLast
+Invalid request:      removeFirst
+Invalid request:      print
+Invalid request:      indexOf
+Invalid request:      indexOf
+Invalid request:      indexOf
+Invalid request:      lastIndexOf
+Invalid request:      lastIndexOf
+Invalid request:      lastIndexOf
+Invalid request:      deleteBefore
+Invalid request:      deleteBefore
+Invalid request:      deleteBefore
+Invalid request:      print
+Invalid request:      set
+Invalid request:      print
+Invalid request:      getFirst
+Invalid request:      getLast
+Invalid request:      remove
+get:                  null at position 0
+get:                  null at position 4
+Invalid request:      remove
+Invalid request:      remove
+Invalid request:      print
+Invalid request:      sack
+END OF PROCESSING CURRENT FILE
+
+PROCESSING DOUBLE(FLOAT) FILE
+Invalid request:      addFirst
+Invalid request:      addLast
+Invalid request:      addFirst
+Invalid request:      addLast
+Invalid request:      add
+Invalid request:      add
+Invalid request:      add
+Invalid request:      add
+Invalid request:      addBefore
+Invalid request:      addBefore
+Invalid request:      print
+Invalid request:      removeLast
+Invalid request:      removeFirst
+Invalid request:      print
+Invalid request:      indexOf
+Invalid request:      indexOf
+Invalid request:      indexOf
+Invalid request:      lastIndexOf
+Invalid request:      lastIndexOf
+Invalid request:      lastIndexOf
+Invalid request:      deleteBefore
+Invalid request:      deleteBefore
+Invalid request:      deleteBefore
+Invalid request:      print
+Invalid request:      set
+Invalid request:      print
+Invalid request:      getFirst
+Invalid request:      getLast
+Invalid request:      remove
+get:                  null at position 0
+get:                  null at position 0
+get:                  null at position 4
+Invalid request:      remove
+Invalid request:      remove
+Invalid request:      print
+Invalid request:      sack
+END OF PROCESSING CURRENT FILE

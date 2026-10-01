@@ -1,0 +1,38 @@
+addFirst 15
+addLast 25
+addFirst 65
+addLast 75
+add 0 11
+add 2 22
+add 0 01
+add 7 99
+add 1.5 888
+addBefore 99 88
+addBefore 1 55
+print
+removeLast
+removeFirst
+print
+indexOf 15
+indexOf 25
+indexOf 105
+lastIndexOf 56
+lastIndexOf 1
+lastIndexOf 88
+deleteBefore 1
+deleteBefore 11
+deleteBefore 88
+print
+set 3 111
+print
+getFirst
+getLast
+remove 11
+get 0.5
+get 0
+get 4
+remove 65
+remove 88
+print
+sack
+quit
