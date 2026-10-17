@@ -113,8 +113,6 @@ public class MyLinkedList<E> implements MyList<E> {
   //POST: New node is added prior to the location of insertion
 
   public void addBefore(E prior, E data) {
-    // PRE: prior is the value before which data should be inserted.
-    // POST: inserts data before the first matching prior value, or throws if absent.
     if (head == null)
       throw new IllegalStateException("List is empty - prior not found");
     if (java.util.Objects.equals(head.element, prior)) {
@@ -192,8 +190,6 @@ public class MyLinkedList<E> implements MyList<E> {
   //POST:  The node prior to the value given is deleted 
 
   public E deleteBefore(E prior) {
-    // PRE: prior is the value immediately after the node to delete.
-    // POST: removes and returns the node before the first matching prior value.
     if (size < 2)
       throw new IllegalStateException("Delete before: unable to delete before");
     if (java.util.Objects.equals(head.element, prior))
@@ -381,42 +377,48 @@ public class MyLinkedList<E> implements MyList<E> {
   public boolean containsAll(java.util.Collection<?> c) {
     // PRE: c is the collection of values to search for.
     // POST: returns true only when every value in c occurs in this list.
-    for (Object value : c)
-      if (!contains(value))
+    for (Object item : c) {
+      boolean currentItem = false;
+      Node<E> current = head;
+      while (current != null) {
+        if (java.util.Objects.equals(item, current.element)) {
+          currentItem = true;
+          break;
+        }
+        current = current.next;
+      }
+      if (!currentItem)
         return false;
+    }
     return true;
   }
 
   @Override
-  
+  // PRE: c is the collection of values to append.
+  // POST: appends the values in iteration order and reports whether the list changed.
   public boolean addAll(java.util.Collection<? extends E> c) {
-    // PRE: c is the collection of values to append.
-    // POST: appends all values in iteration order and reports whether the list changed.
-    Object[] values = new Object[c.size()];
-    int count = 0;
+    MyLinkedList<E> values = new MyLinkedList<>();
     for (E value : c)
-      values[count++] = value;
-    for (int i = 0; i < count; i++) {
-      @SuppressWarnings("unchecked") E value = (E) values[i];
-      addLast(value);
-    }
-    return count > 0;
+      values.addLast(value);
+    for (Node<E> current = values.head; current != null; current = current.next)
+      addLast(current.element);
+    return values.size > 0;
   }
 
   @Override
-  //Reference: MyList.java collection-method exercise; remove values found in c.
-  //PRE: c is the collection of values to remove.
-  //POST: removes every matching list element and reports whether the list changed.
+  // PRE: c is the collection of values to remove.
+  // POST: removes every matching list element and reports whether the list changed.
   public boolean removeAll(java.util.Collection<?> c) {
-    boolean modified = false;
-    for (int i = 0; i < size; i++) {
-      if (c.contains(get(i))) {
-        remove(i);
-        modified = true;
-        i--;
+    boolean updated = false;
+    for (Object value : c) {
+      int index = indexOf(value);
+      while (index >= 0) {
+        remove(index);
+        updated = true;
+        index = indexOf(value);
       }
     }
-    return modified;
+    return updated;
   }
 
   @Override 
