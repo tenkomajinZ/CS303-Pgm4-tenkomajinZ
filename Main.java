@@ -1,3 +1,10 @@
+/*
+ * Student: Jason Nguyen
+ * Class: CS303
+ * Date: October 17, 2026
+ * Assignment: CS303 Program 4 - Linked Lists
+ * This codebase was tested using GPT-6 Luna to check missing PRE/POST, make sure the code is correct and to help with debugging.
+ */
 import java.util.Scanner;
 import java.io.*;
 

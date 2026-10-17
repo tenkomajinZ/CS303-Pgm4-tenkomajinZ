@@ -78,6 +78,7 @@ public class MyLinkedList<E> implements MyList<E> {
 
   @Override 
   //TASK 1: ADD 
+  
   //Add a new element at the specified index in this list
   //PRE: accepts the element to add & index location
   //POST:if index is 0 - addfirst
@@ -86,6 +87,8 @@ public class MyLinkedList<E> implements MyList<E> {
   //     adjust pointers, increase size
 
   public void add(int index, E e) {
+    if (index < 0)
+      throw new IndexOutOfBoundsException("Index: " + index);
     if (index == 0) {
       addFirst(e);
     }
@@ -93,17 +96,40 @@ public class MyLinkedList<E> implements MyList<E> {
       addLast(e);
     }
     else {
-        // Exercise in Lecture 8
+      Node<E> current = head;
+      for (int i = 0; i < index - 1; i++)
+        current = current.next;
+      Node<E> newNode = new Node<>(e);
+      newNode.next = current.next;
+      current.next = newNode;
+      size++;
     }
   }
 
 
   //TASK 2: ADD BEFORE
+  
   //PRE:  Accepts 2 values: the Prior value & the value to add 
   //POST: New node is added prior to the location of insertion
 
   public void addBefore(E prior, E data) {
-     // Exercise in Lecture 8
+    // PRE: prior is the value before which data should be inserted.
+    // POST: inserts data before the first matching prior value, or throws if absent.
+    if (head == null)
+      throw new IllegalStateException("List is empty - prior not found");
+    if (java.util.Objects.equals(head.element, prior)) {
+      addFirst(data);
+      return;
+    }
+    Node<E> previous = head;
+    while (previous.next != null && !java.util.Objects.equals(previous.next.element, prior))
+      previous = previous.next;
+    if (previous.next == null)
+      throw new IllegalStateException("Prior not found");
+    Node<E> newNode = new Node<>(data);
+    newNode.next = previous.next;
+    previous.next = newNode;
+    size++;
   }
 
   // Remove the head node and return the object
@@ -161,12 +187,30 @@ public class MyLinkedList<E> implements MyList<E> {
   }
 
   //TASK 3: DELETE BEFORE
+  
   //PRE:   Function accepts the element value immediately AFTER node to be deleted
   //POST:  The node prior to the value given is deleted 
 
   public E deleteBefore(E prior) {
-     // Exercise in Lecture 8
-    return null;
+    // PRE: prior is the value immediately after the node to delete.
+    // POST: removes and returns the node before the first matching prior value.
+    if (size < 2)
+      throw new IllegalStateException("Delete before: unable to delete before");
+    if (java.util.Objects.equals(head.element, prior))
+      throw new IllegalStateException("Delete before: prior is the head");
+    if (java.util.Objects.equals(head.next.element, prior))
+      return removeFirst();
+    Node<E> previous = head;
+    while (previous.next != null && previous.next.next != null) {
+      if (java.util.Objects.equals(previous.next.next.element, prior)) {
+        E removed = previous.next.element;
+        previous.next = previous.next.next;
+        size--;
+        return removed;
+      }
+      previous = previous.next;
+    }
+    throw new IllegalStateException("Delete before: prior not found");
   }
 
  
@@ -179,7 +223,6 @@ public class MyLinkedList<E> implements MyList<E> {
   //     decrement size
   //     return value
   public E remove(int index) {  
-    System.out.println("remove here: " + index); 
     if (index < 0 || index >= size) {
       return null;
     }
@@ -241,8 +284,17 @@ public class MyLinkedList<E> implements MyList<E> {
   //PRE: accepts the object
   //POST:checks data elements if found, returns true
   //     else returns false
+
   public boolean contains(Object e) {
-    // Exercise in Lecture 8
+    // PRE: e is the value to search for; null is allowed.
+    // POST: returns true if a matching element is present; otherwise false.
+    for (Node<E> current = head; 
+      current != null; 
+      current = current.next)
+
+      if (java.util.Objects.equals(current.element, e))
+        return true;
+      
     return false;
   }
 
@@ -251,19 +303,34 @@ public class MyLinkedList<E> implements MyList<E> {
   //PRE: accepts the index
   //POST:verify the index & return null if invalid
   //     return the element 
-  public E get(int index) {
-      // Exercise in Lecture 8
-      return null;
 
+  public E get(int index) {
+    // PRE: index is a zero-based position.
+    // POST: returns the element at index, or null when index is invalid.
+    if (index < 0 || index >= size)
+      return null;
+    Node<E> current = head;
+    for (int i = 0; i < index; i++)
+      current = current.next;
+    return current.element;
   }
 
   @Override 
   //Return the index of the first matching object or -1 if not found
   //PRE: accepts an object
   //POST:returns the index if found or -1 if not 
-
+  
   public int indexOf(Object e) {
-     // Exercise in Lecture 8
+    // PRE: e is the value to find; null is allowed.
+    // POST: returns the first matching index, or -1 when absent.
+    int index = 0;
+    for (Node<E> current = head; 
+      current != null; 
+      current = current.next, 
+      index++)
+
+      if (java.util.Objects.equals(current.element, e))
+        return index;
     return -1;
   }
 
@@ -271,9 +338,21 @@ public class MyLinkedList<E> implements MyList<E> {
   //Returns the last index of the matching object or -1 if not found
   //PRE: accepts an object
   //POST:returns the last index if found or -1 if not 
+ 
   public int lastIndexOf(E e) {
-     // Exercise in Lecture 8
-     return -1;
+    // PRE: e is the value to find; null is allowed.
+    // POST: returns the last matching index, or -1 when absent.
+    int index = 0;
+    int lastIndex = -1;
+    for (Node<E> current = head; 
+      current != null; 
+      current = current.next, 
+      index++)
+
+      if (java.util.Objects.equals(current.element, e))
+        lastIndex = index;
+
+    return lastIndex;
   }
 
   @Override 
@@ -283,11 +362,61 @@ public class MyLinkedList<E> implements MyList<E> {
   //     saves old value at the index
   //     sets index value to new element  
   //     returns element
+  
 
   public E set(int index, E e) {
-    // Exercise in Lecture 8
-      return null;
+    // PRE: index is a valid zero-based position and e is the replacement value.
+    // POST: replaces the indexed element and returns its previous value.
+    if (index < 0 || index >= size)
+      throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+    Node<E> current = head;
+    for (int i = 0; i < index; i++)
+      current = current.next;
+    E previous = current.element;
+    current.element = e;
+    return previous;
+  }
 
+  @Override
+  public boolean containsAll(java.util.Collection<?> c) {
+    // PRE: c is the collection of values to search for.
+    // POST: returns true only when every value in c occurs in this list.
+    for (Object value : c)
+      if (!contains(value))
+        return false;
+    return true;
+  }
+
+  @Override
+  
+  public boolean addAll(java.util.Collection<? extends E> c) {
+    // PRE: c is the collection of values to append.
+    // POST: appends all values in iteration order and reports whether the list changed.
+    Object[] values = new Object[c.size()];
+    int count = 0;
+    for (E value : c)
+      values[count++] = value;
+    for (int i = 0; i < count; i++) {
+      @SuppressWarnings("unchecked") E value = (E) values[i];
+      addLast(value);
+    }
+    return count > 0;
+  }
+
+  @Override
+  //Reference: MyList.java collection-method exercise; remove values found in c.
+  //PRE: c is the collection of values to remove.
+  //POST: removes every matching list element and reports whether the list changed.
+  public boolean removeAll(java.util.Collection<?> c) {
+    boolean modified = false;
+    for (int i = 0; i < size; i++) {
+      if (c.contains(get(i))) {
+        remove(i);
+        modified = true;
+        i--;
+      }
+    }
+    return modified;
   }
 
   @Override 

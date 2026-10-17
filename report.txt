@@ -1,77 +1,79 @@
 
 PROCESSING INTEGER FILE
-Invalid request:      addFirst
-Invalid request:      addLast
-Invalid request:      addFirst
-Invalid request:      addLast
-Invalid request:      add
-Invalid request:      add
-Invalid request:      add
-Invalid request:      add
-Invalid request:      addBefore
-Invalid request:      addBefore
-Invalid request:      print
-Invalid request:      removeLast
-Invalid request:      removeFirst
-Invalid request:      print
-Invalid request:      indexOf
-Invalid request:      indexOf
-Invalid request:      indexOf
-Invalid request:      lastIndexOf
-Invalid request:      lastIndexOf
-Invalid request:      lastIndexOf
-Invalid request:      deleteBefore
-Invalid request:      deleteBefore
-Invalid request:      deleteBefore
-Invalid request:      print
-Invalid request:      set
-Invalid request:      print
-Invalid request:      getFirst
-Invalid request:      getLast
-Invalid request:      remove
-get:                  null at position 0
-get:                  null at position 4
-Invalid request:      remove
-Invalid request:      remove
-Invalid request:      print
-Invalid request:      sack
+addFirst:              15 -> [15]
+addLast:               25 -> [15, 25]
+addFirst:              65 -> [65, 15, 25]
+addLast:               75 -> [65, 15, 25, 75]
+add:                   11 at position 0 -> [11, 65, 15, 25, 75]
+add:                   22 at position 2 -> [11, 65, 22, 15, 25, 75]
+add:                   1 at position 0 -> [1, 11, 65, 22, 15, 25, 75]
+add:                   99 at position 7 -> [1, 11, 65, 22, 15, 25, 75, 99]
+add: error - For input string: "1.5"
+addBefore:             88 before 99 -> [1, 11, 65, 22, 15, 25, 75, 88, 99]
+addBefore:             55 before 1 -> [55, 1, 11, 65, 22, 15, 25, 75, 88, 99]
+list:                  [55, 1, 11, 65, 22, 15, 25, 75, 88, 99]
+removeLast:            99 -> [55, 1, 11, 65, 22, 15, 25, 75, 88]
+removeFirst:           55 -> [1, 11, 65, 22, 15, 25, 75, 88]
+list:                  [1, 11, 65, 22, 15, 25, 75, 88]
+indexOf:               15 -> 4
+indexOf:               25 -> 5
+indexOf:               105 -> -1
+lastIndexOf:           56 -> -1
+lastIndexOf:           1 -> 0
+lastIndexOf:           88 -> 7
+deleteBefore: error - Delete before: prior is the head
+deleteBefore:          11 -> 1 -> [11, 65, 22, 15, 25, 75, 88]
+deleteBefore:          88 -> 75 -> [11, 65, 22, 15, 25, 88]
+list:                  [11, 65, 22, 15, 25, 88]
+set:                   15 replaced at position 3 -> [11, 65, 22, 111, 25, 88]
+list:                  [11, 65, 22, 111, 25, 88]
+getFirst:              11
+getLast:               88
+remove:                11 -> true -> [65, 22, 111, 25, 88]
+get: error - For input string: "0.5"
+get:                   65 at position 0
+get:                   88 at position 4
+remove:                65 -> true -> [22, 111, 25, 88]
+remove:                88 -> true -> [22, 111, 25]
+list:                  [22, 111, 25]
+Invalid request:       sack
 END OF PROCESSING CURRENT FILE
 
 PROCESSING DOUBLE(FLOAT) FILE
-Invalid request:      addFirst
-Invalid request:      addLast
-Invalid request:      addFirst
-Invalid request:      addLast
-Invalid request:      add
-Invalid request:      add
-Invalid request:      add
-Invalid request:      add
-Invalid request:      addBefore
-Invalid request:      addBefore
-Invalid request:      print
-Invalid request:      removeLast
-Invalid request:      removeFirst
-Invalid request:      print
-Invalid request:      indexOf
-Invalid request:      indexOf
-Invalid request:      indexOf
-Invalid request:      lastIndexOf
-Invalid request:      lastIndexOf
-Invalid request:      lastIndexOf
-Invalid request:      deleteBefore
-Invalid request:      deleteBefore
-Invalid request:      deleteBefore
-Invalid request:      print
-Invalid request:      set
-Invalid request:      print
-Invalid request:      getFirst
-Invalid request:      getLast
-Invalid request:      remove
-get:                  null at position 0
-get:                  null at position 0
-get:                  null at position 4
-Invalid request:      remove
-Invalid request:      remove
-Invalid request:      print
-Invalid request:      sack
+addFirst:              15.5 -> [15.5]
+addLast:               25.5 -> [15.5, 25.5]
+addFirst:              65.5 -> [65.5, 15.5, 25.5]
+addLast:               75.5 -> [65.5, 15.5, 25.5, 75.5]
+add:                   11.5 at position 0 -> [11.5, 65.5, 15.5, 25.5, 75.5]
+add:                   22.5 at position 2 -> [11.5, 65.5, 22.5, 15.5, 25.5, 75.5]
+add:                   1.5 at position 0 -> [1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5]
+add:                   99.5 at position 7 -> [1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 99.5]
+addBefore:             88.5 before 99.5 -> [1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5, 99.5]
+addBefore:             55.5 before 1.5 -> [55.5, 1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5, 99.5]
+list:                  [55.5, 1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5, 99.5]
+removeLast:            99.5 -> [55.5, 1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5]
+removeFirst:           55.5 -> [1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5]
+list:                  [1.5, 11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5]
+indexOf:               15.5 -> 4
+indexOf:               25.5 -> 5
+indexOf:               105.5 -> -1
+lastIndexOf:           56.5 -> -1
+lastIndexOf:           1.5 -> 0
+lastIndexOf:           88.5 -> 7
+deleteBefore: error - Delete before: prior is the head
+deleteBefore:          11.5 -> 1.5 -> [11.5, 65.5, 22.5, 15.5, 25.5, 75.5, 88.5]
+deleteBefore:          88.5 -> 75.5 -> [11.5, 65.5, 22.5, 15.5, 25.5, 88.5]
+list:                  [11.5, 65.5, 22.5, 15.5, 25.5, 88.5]
+set:                   15.5 replaced at position 3 -> [11.5, 65.5, 22.5, 111.5, 25.5, 88.5]
+list:                  [11.5, 65.5, 22.5, 111.5, 25.5, 88.5]
+getFirst:              11.5
+getLast:               88.5
+remove:                11.5 -> true -> [65.5, 22.5, 111.5, 25.5, 88.5]
+get: error - index must be a whole number: 0.5
+get:                   65.5 at position 0
+get:                   88.5 at position 4
+remove:                65.5 -> true -> [22.5, 111.5, 25.5, 88.5]
+remove:                88.5 -> true -> [22.5, 111.5, 25.5]
+list:                  [22.5, 111.5, 25.5]
+Invalid request:       sack
 END OF PROCESSING CURRENT FILE
